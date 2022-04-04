@@ -1,0 +1,9 @@
+import Flask
+
+@app.route('/')
+def index():
+    print url_for('give_greeting', name='Mark') # This will print '/greeting/Mark'
+
+@app.route('/greeting/<name>')
+def give_greeting(name):
+    return 'Hello, {0}!'.format(name)
