@@ -1,0 +1,67 @@
+
+
+.for-hover {
+    opacity:1
+}
+
+.for-hover:hover{
+opacity: 0.2;
+transition: 0.75s;
+}
+
+
+.war-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+justify-content: center;
+align-items:center;
+}
+.war-form{
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    width:661px;
+    height: auto;
+    background-color: #1AC0C6;
+    border-radius: 50px;
+}
+
+.war-input-field{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+
+
+
+input {
+    
+    border-radius: 20px;
+    width: 18vw;
+    height: 2vw;
+    text-align: center;
+}
+
+input:focus{
+    outline: 2px solid #FDFA66;     /* oranges! yey */
+  }
+
+  .submit-button{
+      color: black;
+    margin-top: 20px;
+    margin-bottom: 10px;
+      background-color: #FDFA66;
+      border: 0px;
+      border-radius: 50px;
+      width: 127px;
+      height: 58px;
+      text-align: center;
+  }
+
+
+
+  .submit-button:hover{
+    opacity: 0.4;
+    transition: 0.75s;
+    }
