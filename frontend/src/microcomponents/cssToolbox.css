@@ -21,13 +21,35 @@ align-items:center;
     display: flex;
     flex-direction:column;
     align-items:center;
-    width:661px;
-    height: auto;
+    justify-content: center;
+    width: 661px;;
+    height:auto;
     background-color: #1AC0C6;
     border-radius: 50px;
 }
 
+
+.war-form-donation{
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content: center;
+    width: 1094px;
+    height:auto;
+    background-color: #1AC0C6;
+    border-radius: 50px;
+}
+
+
 .war-input-field{
+   
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+
+.war-input-field-donation{
+    padding: 20px 20px 20px 20px;
     margin-top: 25px;
     margin-bottom: 25px;
 }
@@ -64,4 +86,27 @@ input:focus{
   .submit-button:hover{
     opacity: 0.4;
     transition: 0.75s;
+    }
+
+    .donation-campaigns {
+        margin-top: 10px;
+        display: grid;
+        grid-template-columns: 10vw 10vw 10vw;
+        column-gap: 100px;
+        grid-row-gap:100px;
+    }
+
+
+
+    .donation-container {
+        height: 100%;
+        width: 100%;
+        display: flex;
+    justify-content: center;
+    align-items:center;
+    }
+    .donation-form{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        border-radius: 50px;
     }

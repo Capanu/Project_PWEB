@@ -8,9 +8,28 @@ import VolunteerCard from "./microcomponents/VolunteerCard";
 import RaisedIssue from "./microcomponents/RaisedIssue";
 import PageForm from "./microcomponents/PageForm";
 import ViewForm from "./microcomponents/ViewForm";
+import PublicPage from "./components/SpectatorPages/PublicPage";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LoginPage from "./components/SpectatorPages/LoginPage";
+import RegisterPage from "./components/SpectatorPages/RegisterPage";
+import DonationPage from "./components/SpectatorPages/DonationPage";
+import DonatePageForm from "./components/SpectatorPages/DonatePageForm";
 function App() {
-	let payload = { title: "Ernesto", date: "11-11-2022" };
-	return <PageForm />;
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route exact path="/" element={<PublicPage />}></Route>
+				<Route exact path="/loginPage" element={<LoginPage />}></Route>
+				<Route exact path="/registerPage" element={<RegisterPage />}></Route>
+				<Route exact path="/donationPage" element={<DonationPage />}></Route>
+				<Route
+					path="/donationPage/foundRaisingCampaing"
+					element={<DonatePageForm />}
+				></Route>
+			</Routes>
+		</BrowserRouter>
+	);
 }
 
 export default App;
