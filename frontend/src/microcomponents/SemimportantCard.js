@@ -13,6 +13,11 @@ function SemimportantCard(props) {
 				borderRadius: "24px",
 			}}
 			className="box for-hover"
+			onClick={() => {
+				sessionStorage.setItem("warning", JSON.stringify(props.information));
+				window.location = "/warning";
+			}}
+			key={Math.random()}
 		>
 			<Card.Body>
 				<Card.Title>{title}</Card.Title>

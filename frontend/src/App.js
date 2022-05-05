@@ -15,6 +15,16 @@ import LoginPage from "./components/SpectatorPages/LoginPage";
 import RegisterPage from "./components/SpectatorPages/RegisterPage";
 import DonationPage from "./components/SpectatorPages/DonationPage";
 import DonatePageForm from "./components/SpectatorPages/DonatePageForm";
+import ResidentMainPage from "./components/Resident/ResidentMainPage";
+import ResidentWarningandAlertsPage from "./components/Resident/ResidentWarningandAlertsPage";
+import ResidentViewWarningPage from "./components/Resident/ResidentViewWarningPage";
+import ResidentRaiseIssuePage from "./components/Resident/ResidentRaiseIssuePage";
+import VolunteerMainPage from "./components/Volunteer/VolunteerMainPage";
+import VolunteerWarnings from "./components/Volunteer/VolunteerWarnings";
+import VolunteerRecruitmentCampaigns from "./components/Volunteer/VolunteerRecruitmentCampaigns";
+import VolunteerEnrollPage from "./components/Volunteer/VolunteerEnrollPage";
+import ViewEnrolledCampaigns from "./components/Volunteer/ViewEnrolledCampaigns";
+import VolunteerEnrolledForm from "./components/Volunteer/VolunteerEnrolledForm";
 function App() {
 	return (
 		<BrowserRouter>
@@ -26,6 +36,41 @@ function App() {
 				<Route
 					path="/donationPage/foundRaisingCampaing"
 					element={<DonatePageForm />}
+				></Route>
+				<Route path="/residentPage" element={<ResidentMainPage />}></Route>
+				<Route
+					path="/residentPage/warnings"
+					element={<ResidentWarningandAlertsPage />}
+				></Route>
+				<Route path="/warning" element={<ResidentViewWarningPage />}></Route>
+				<Route
+					path="/residentPage/raiseIssue"
+					element={<ResidentRaiseIssuePage />}
+				></Route>
+
+				<Route path="/volunteerPage" element={<VolunteerMainPage />}></Route>
+				<Route
+					path="/volunteerPage/warnings"
+					element={<VolunteerWarnings />}
+				></Route>
+				<Route
+					path="/volunteerPage/volunteerCampaigns"
+					element={<VolunteerRecruitmentCampaigns />}
+				></Route>
+
+				<Route
+					path="/volunteerPage/volunteerCampaigns/enrollPage"
+					element={<VolunteerEnrollPage />}
+				></Route>
+
+				<Route
+					path="/volunteerPage/enrolledVolunteerCampaigns"
+					element={<ViewEnrolledCampaigns />}
+				></Route>
+
+				<Route
+					path="/volunteerPage/volunteerCampaigns/enrolledForm"
+					element={<VolunteerEnrolledForm />}
 				></Route>
 			</Routes>
 		</BrowserRouter>

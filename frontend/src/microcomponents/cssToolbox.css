@@ -89,6 +89,7 @@ input:focus{
     }
 
     .donation-campaigns {
+        overflow: auto;
         margin-top: 10px;
         display: grid;
         grid-template-columns: 10vw 10vw 10vw;
@@ -96,6 +97,15 @@ input:focus{
         grid-row-gap:100px;
     }
 
+
+    .warinigs-list {
+        overflow: auto;
+        margin-top: 10px;
+        display: grid;
+        grid-template-columns: 10vw 10vw 10vw;
+        column-gap: 100px;
+        grid-row-gap:100px;
+    }
 
 
     .donation-container {
