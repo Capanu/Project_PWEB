@@ -1,4 +1,6 @@
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import LogoutButton from "../../microcomponents/LogoutButton";
+
 function ResidentMainPage() {
 	// set ip
 	const ip = sessionStorage.getItem("ip");
@@ -20,16 +22,7 @@ function ResidentMainPage() {
 						<Nav.Link href="/residentPage/raiseIssue">Raise Issue</Nav.Link>
 					</Nav>
 					<Nav>
-						<Button
-							onClick={() => (window.location = "/")}
-							style={{
-								background: "#FDFA66",
-								color: "black",
-								marginLeft: "350%",
-							}}
-						>
-							Logout
-						</Button>
+						<LogoutButton />
 					</Nav>
 				</Container>
 			</Navbar>

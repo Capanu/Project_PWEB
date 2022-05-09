@@ -25,55 +25,71 @@ import VolunteerRecruitmentCampaigns from "./components/Volunteer/VolunteerRecru
 import VolunteerEnrollPage from "./components/Volunteer/VolunteerEnrollPage";
 import ViewEnrolledCampaigns from "./components/Volunteer/ViewEnrolledCampaigns";
 import VolunteerEnrolledForm from "./components/Volunteer/VolunteerEnrolledForm";
+
+import { useAuth0 } from "@auth0/auth0-react";
+import React, { useEffect } from "react";
 function App() {
+	const { logout } = useAuth0();
+	const { isAuthenticated, loginWithRedirect } = useAuth0();
+	useEffect(() => {
+		if (!isAuthenticated) {
+			loginWithRedirect();
+		} else {
+			logout({ returnTo: window.location.origin });
+		}
+	}, [isAuthenticated, loginWithRedirect]);
+
 	return (
-		<BrowserRouter>
-			<Routes>
-				<Route exact path="/" element={<PublicPage />}></Route>
-				<Route exact path="/loginPage" element={<LoginPage />}></Route>
-				<Route exact path="/registerPage" element={<RegisterPage />}></Route>
-				<Route exact path="/donationPage" element={<DonationPage />}></Route>
-				<Route
-					path="/donationPage/foundRaisingCampaing"
-					element={<DonatePageForm />}
-				></Route>
-				<Route path="/residentPage" element={<ResidentMainPage />}></Route>
-				<Route
-					path="/residentPage/warnings"
-					element={<ResidentWarningandAlertsPage />}
-				></Route>
-				<Route path="/warning" element={<ResidentViewWarningPage />}></Route>
-				<Route
-					path="/residentPage/raiseIssue"
-					element={<ResidentRaiseIssuePage />}
-				></Route>
+		isAuthenticated && (
+			<button>Login</button>
+			// <BrowserRouter>
+			// 	<Routes>
+			// 		<Route exact path="/" element={<PublicPage />}></Route>
+			// 		<Route exact path="/loginPage" element={<LoginPage />}></Route>
+			// 		<Route exact path="/registerPage" element={<RegisterPage />}></Route>
+			// 		<Route exact path="/donationPage" element={<DonationPage />}></Route>
+			// 		<Route
+			// 			path="/donationPage/foundRaisingCampaing"
+			// 			element={<DonatePageForm />}
+			// 		></Route>
+			// 		<Route path="/residentPage" element={<ResidentMainPage />}></Route>
+			// 		<Route
+			// 			path="/residentPage/warnings"
+			// 			element={<ResidentWarningandAlertsPage />}
+			// 		></Route>
+			// 		<Route path="/warning" element={<ResidentViewWarningPage />}></Route>
+			// 		<Route
+			// 			path="/residentPage/raiseIssue"
+			// 			element={<ResidentRaiseIssuePage />}
+			// 		></Route>
 
-				<Route path="/volunteerPage" element={<VolunteerMainPage />}></Route>
-				<Route
-					path="/volunteerPage/warnings"
-					element={<VolunteerWarnings />}
-				></Route>
-				<Route
-					path="/volunteerPage/volunteerCampaigns"
-					element={<VolunteerRecruitmentCampaigns />}
-				></Route>
+			// 		<Route path="/volunteerPage" element={<VolunteerMainPage />}></Route>
+			// 		<Route
+			// 			path="/volunteerPage/warnings"
+			// 			element={<VolunteerWarnings />}
+			// 		></Route>
+			// 		<Route
+			// 			path="/volunteerPage/volunteerCampaigns"
+			// 			element={<VolunteerRecruitmentCampaigns />}
+			// 		></Route>
 
-				<Route
-					path="/volunteerPage/volunteerCampaigns/enrollPage"
-					element={<VolunteerEnrollPage />}
-				></Route>
+			// 		<Route
+			// 			path="/volunteerPage/volunteerCampaigns/enrollPage"
+			// 			element={<VolunteerEnrollPage />}
+			// 		></Route>
 
-				<Route
-					path="/volunteerPage/enrolledVolunteerCampaigns"
-					element={<ViewEnrolledCampaigns />}
-				></Route>
+			// 		<Route
+			// 			path="/volunteerPage/enrolledVolunteerCampaigns"
+			// 			element={<ViewEnrolledCampaigns />}
+			// 		></Route>
 
-				<Route
-					path="/volunteerPage/volunteerCampaigns/enrolledForm"
-					element={<VolunteerEnrolledForm />}
-				></Route>
-			</Routes>
-		</BrowserRouter>
+			// 		<Route
+			// 			path="/volunteerPage/volunteerCampaigns/enrolledForm"
+			// 			element={<VolunteerEnrolledForm />}
+			// 		></Route>
+			// 	</Routes>
+			// </BrowserRouter>
+		)
 	);
 }
 
