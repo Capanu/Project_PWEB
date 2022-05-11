@@ -1,5 +1,4 @@
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
-import LogoutButton from "../../microcomponents/LogoutButton";
 
 function ResidentMainPage() {
 	// set ip
@@ -22,7 +21,16 @@ function ResidentMainPage() {
 						<Nav.Link href="/residentPage/raiseIssue">Raise Issue</Nav.Link>
 					</Nav>
 					<Nav>
-						<LogoutButton />
+						<Button
+							onClick={() => (window.location = "/")}
+							style={{
+								background: "#FDFA66",
+								color: "black",
+								marginLeft: "350%",
+							}}
+						>
+							Logout
+						</Button>
 					</Nav>
 				</Container>
 			</Navbar>
