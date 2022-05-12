@@ -1,0 +1,30 @@
+package upb.pweb.warzonehelpapp.controller.internal_api;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import upb.pweb.warzonehelpapp.controller.internal_api.resources.BasicSuccessResponse;
+import upb.pweb.warzonehelpapp.controller.internal_api.resources.NewVolunteerRecruitmentCampaignRequest;
+import upb.pweb.warzonehelpapp.exception.BaseException;
+import upb.pweb.warzonehelpapp.service.base.VolunteerRecruitmentCampaignService;
+
+import javax.validation.Valid;
+
+@RestController
+@RequestMapping("/internal")
+@Slf4j
+@RequiredArgsConstructor
+public class VolunteerRecruitmentCampaignsManagementController {
+    private final VolunteerRecruitmentCampaignService volunteerRecruitmentCampaignService;
+
+    @PostMapping("/new-volunteer-recruitment-campaign")
+    public ResponseEntity<?> newVolunteerRecruitmentCampaign(@RequestBody @Valid NewVolunteerRecruitmentCampaignRequest request) throws BaseException {
+        BasicSuccessResponse response = volunteerRecruitmentCampaignService.newVolunteerRecruitmentCampaign(request);
+
+        return ResponseEntity.ok(response);
+    }
+}
