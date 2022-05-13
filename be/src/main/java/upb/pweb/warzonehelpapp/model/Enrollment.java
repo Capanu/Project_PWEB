@@ -10,7 +10,7 @@ import java.util.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-@Table(name = "volunteer_recruitment_campaign")
+@Table(name = "enrollment")
 @Entity
 @Getter
 @Setter
@@ -18,23 +18,19 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class VolunteerRecruitmentCampaign {
+public class Enrollment {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "volunteer_id", nullable = false)
+    private User volunteer;
 
-    @Column(name = "description", nullable = false)
-    private String description;
-
-    @Column(name = "target_number_of_volunteers", nullable = false)
-    private Integer targetNumberOfVolunteers;
-
-    @Column(name = "current_number_of_volunteers", nullable = false, columnDefinition = "integer default 0")
-    private Integer currentNumberOfVolunteers;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "volunteer_recruitment_campaign_id", nullable = false)
+    private VolunteerRecruitmentCampaign volunteerRecruitmentCampaign;
 
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp

@@ -12,6 +12,8 @@ import upb.pweb.warzonehelpapp.model.DegreeOfImportance;
 import upb.pweb.warzonehelpapp.repository.AlertRepository;
 import upb.pweb.warzonehelpapp.repository.DegreeOfImportanceRepository;
 
+import java.util.List;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -37,5 +39,9 @@ public class AlertService {
         repository.save(newAlert);
 
         return new BasicSuccessResponse();
+    }
+
+    public List<Alert> listAllAlerts() {
+        return repository.findAll();
     }
 }

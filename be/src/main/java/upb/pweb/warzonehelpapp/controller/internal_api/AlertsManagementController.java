@@ -3,10 +3,7 @@ package upb.pweb.warzonehelpapp.controller.internal_api;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import upb.pweb.warzonehelpapp.controller.internal_api.resources.BasicSuccessResponse;
 import upb.pweb.warzonehelpapp.controller.internal_api.resources.NewAlertRequest;
 import upb.pweb.warzonehelpapp.exception.BaseException;
@@ -26,5 +23,10 @@ public class AlertsManagementController {
         BasicSuccessResponse response = alertService.newAlert(request);
 
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/alerts")
+    public ResponseEntity<?> getAllAlerts() {
+        return ResponseEntity.ok(alertService.listAllAlerts());
     }
 }
