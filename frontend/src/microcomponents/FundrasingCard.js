@@ -20,7 +20,13 @@ function FundrasingCard(props) {
 					"foundRaisngCampaign",
 					JSON.stringify(props.information)
 				);
-				window.location = "/donationPage/foundRaisingCampaing";
+				if (props) {
+					if (props.information.isAdmin == 0) {
+						window.location = "/donationPage/foundRaisingCampaing";
+					} else {
+						window.location = "/admin/viewFoundraisingCampaign";
+					}
+				}
 			}}
 			key={Math.random()}
 		>

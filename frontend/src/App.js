@@ -28,6 +28,17 @@ import VolunteerEnrolledForm from "./components/Volunteer/VolunteerEnrolledForm"
 
 import { useAuth0 } from "@auth0/auth0-react";
 import React, { useEffect } from "react";
+import AdminMainPage from "./components/Admin/AdminMainPage";
+import AdminFundraisingCampaignsPage from "./components/Admin/AdminFundraisingCampaignsPage";
+import ViewFundraisingCampaignPage from "./components/Admin/ViewFundraisingCampaignPage";
+import AdminAddFoundraisingCampaign from "./components/Admin/AdminAddFoundraisingCampaign";
+import AdminVolunteerCampaigns from "./components/Admin/AdminVolunteerCampaigns";
+import AdminAddVolunteersCampaign from "./components/Admin/AdminAddVolunteersCampaign";
+import AdminWarnings from "./components/Admin/AdminWarings";
+import AdminAddWaring from "./components/Admin/AdminAddWaring";
+import AdminIssues from "./components/Admin/AdminIssues";
+import IssueView from "./components/Admin/IssueView";
+
 function App() {
 	return (
 		<BrowserRouter>
@@ -75,6 +86,36 @@ function App() {
 					path="/volunteerPage/volunteerCampaigns/enrolledForm"
 					element={<VolunteerEnrolledForm />}
 				></Route>
+				<Route path="/adminMainPage" element={<AdminMainPage />}></Route>
+				<Route
+					path="/adminMainPage/foundraisingCampaigns"
+					element={<AdminFundraisingCampaignsPage />}
+				></Route>
+				<Route
+					path="/admin/viewFoundraisingCampaign"
+					element={<ViewFundraisingCampaignPage />}
+				></Route>
+
+				<Route
+					path="/admin/addFoundraisingCampaign"
+					element={<AdminAddFoundraisingCampaign />}
+				></Route>
+
+				<Route
+					path="/admin/volunteersCampaigns"
+					element={<AdminVolunteerCampaigns />}
+				></Route>
+
+				<Route
+					path="/admin/addVolunteersCampaigns"
+					element={<AdminAddVolunteersCampaign />}
+				></Route>
+
+				<Route path="/admin/warnings" element={<AdminWarnings />}></Route>
+				<Route path="/admin/addWarning" element={<AdminAddWaring />}></Route>
+
+				<Route path="/admin/issues" element={<AdminIssues />}></Route>
+				<Route path="/issue" element={<IssueView />}></Route>
 			</Routes>
 		</BrowserRouter>
 	);

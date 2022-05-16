@@ -8,6 +8,7 @@ function DonationPage() {
 		description: "Some description",
 		currentAmount: 12,
 		targetAmount: 1000,
+		isAdmin: 0,
 	};
 
 	var arr = [];
