@@ -30,6 +30,7 @@ public class VolunteerRecruitmentCampaignsManagementController {
     public ResponseEntity<?> enrollVolunteer(@RequestHeader("X-Email") String email, @RequestBody @Valid EnrollRequest request) throws BaseException {
         BasicSuccessResponse response = volunteerRecruitmentCampaignService.enrollVolunteer(email, request);
 
+        // TODO: CHECK FOR TRYING TO ENROLL IN THE SAME CAMPAIGN
         return ResponseEntity.ok(response);
     }
 

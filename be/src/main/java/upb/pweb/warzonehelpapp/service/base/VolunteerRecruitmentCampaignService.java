@@ -9,14 +9,12 @@ import upb.pweb.warzonehelpapp.controller.internal_api.resources.NewVolunteerRec
 import upb.pweb.warzonehelpapp.exception.BaseException;
 import upb.pweb.warzonehelpapp.exception.InvalidCampaignException;
 import upb.pweb.warzonehelpapp.exception.ReachedMaximumNumberOfEnrollmentsException;
-import upb.pweb.warzonehelpapp.exception.UserNotFoundException;
 import upb.pweb.warzonehelpapp.model.Enrollment;
 import upb.pweb.warzonehelpapp.model.User;
 import upb.pweb.warzonehelpapp.model.VolunteerRecruitmentCampaign;
 import upb.pweb.warzonehelpapp.repository.EnrollmentRepository;
 import upb.pweb.warzonehelpapp.repository.VolunteerRecruitmentCampaignRepository;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,6 +32,7 @@ public class VolunteerRecruitmentCampaignService {
                 .name(request.getName())
                 .description(request.getDescription())
                 .targetNumberOfVolunteers(request.getTargetNumberOfVolunteers())
+                .currentNumberOfVolunteers(0)
                 .build();
 
         volunteerRecruitmentCampaignRepository.save(volunteerRecruitmentCampaign);

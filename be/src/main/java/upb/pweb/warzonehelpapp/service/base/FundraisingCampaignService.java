@@ -24,6 +24,7 @@ public class FundraisingCampaignService {
                 .description(request.getDescription())
                 .iban(request.getIban())
                 .targetAmount(request.getTargetAmount())
+                .currentAmount(0)
                 .build();
 
         repository.save(fundraisingCampaign);
