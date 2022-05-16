@@ -9,6 +9,7 @@ import upb.pweb.warzonehelpapp.controller.internal_api.resources.NewVolunteerRec
 import upb.pweb.warzonehelpapp.exception.BaseException;
 import upb.pweb.warzonehelpapp.exception.InvalidCampaignException;
 import upb.pweb.warzonehelpapp.exception.ReachedMaximumNumberOfEnrollmentsException;
+import upb.pweb.warzonehelpapp.exception.UserNotFoundException;
 import upb.pweb.warzonehelpapp.model.Enrollment;
 import upb.pweb.warzonehelpapp.model.User;
 import upb.pweb.warzonehelpapp.model.VolunteerRecruitmentCampaign;
@@ -77,7 +78,18 @@ public class VolunteerRecruitmentCampaignService {
                 .collect(Collectors.toList());
     }
 
-    public List<VolunteerRecruitmentCampaign> listAllVolunteerRecruitmentCampaigns() {
-        return volunteerRecruitmentCampaignRepository.findAll();
+    public List<VolunteerRecruitmentCampaign> listAllVolunteerRecruitmentCampaigns(String email) throws BaseException {
+        User user = userService.findByEmail(email);
+        List<VolunteerRecruitmentCampaign> allCampaigns = volunteerRecruitmentCampaignRepository.findAll();
+
+        if (user.getRole().getName().equals("ADMIN"))
+            return allCampaigns;
+
+        // Return only the campaigns that the volunteer has not yet enrolled in
+        List<VolunteerRecruitmentCampaign> enrolledInCampaigns = getEnrolledInCampaigns(email);
+
+        allCampaigns.removeAll(enrolledInCampaigns);
+
+        return allCampaigns;
     }
 }

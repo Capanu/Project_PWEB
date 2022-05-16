@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import upb.pweb.warzonehelpapp.annotation.AuthorizedRoles;
 import upb.pweb.warzonehelpapp.controller.internal_api.resources.BasicSuccessResponse;
 import upb.pweb.warzonehelpapp.controller.internal_api.resources.NewAlertRequest;
 import upb.pweb.warzonehelpapp.exception.BaseException;
@@ -18,6 +19,7 @@ import javax.validation.Valid;
 public class AlertsManagementController {
     private final AlertService alertService;
 
+    @AuthorizedRoles(roles = "ADMIN")
     @PostMapping("/new-alert")
     public ResponseEntity<?> newAlert(@RequestBody @Valid NewAlertRequest request) throws BaseException {
         BasicSuccessResponse response = alertService.newAlert(request);
@@ -25,6 +27,7 @@ public class AlertsManagementController {
         return ResponseEntity.ok(response);
     }
 
+    @AuthorizedRoles(roles = {"ADMIN", "RESIDENT", "VOLUNTEER"})
     @GetMapping("/alerts")
     public ResponseEntity<?> getAllAlerts() {
         return ResponseEntity.ok(alertService.listAllAlerts());

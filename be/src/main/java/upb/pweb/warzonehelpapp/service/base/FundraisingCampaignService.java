@@ -38,6 +38,8 @@ public class FundraisingCampaignService {
 
         fundraisingCampaign.setCurrentAmount(fundraisingCampaign.getCurrentAmount() + request.getDonatedAmount());
 
+        repository.save(fundraisingCampaign);
+
         //TODO: Maybe keep evidence of the people that are making donations
 
         return new BasicSuccessResponse("Thanks for taking your time to donate for such a noble cause!");
