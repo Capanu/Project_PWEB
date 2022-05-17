@@ -1,6 +1,6 @@
 import "../../microcomponents/cssToolbox.css";
-import { useState } from "react";
-
+import React, { useState } from "react";
+import axios from "axios";
 function LoginPage() {
 	//get ip
 	const ip = sessionStorage.getItem("ip");
@@ -14,9 +14,30 @@ function LoginPage() {
 	let submitHandler = () => {
 		console.log(user);
 
+		let particular = "/wh/public/login";
+		let url = ip + particular;
+
 		// to do axios call
 
-		flushForm();
+		axios
+			.post(url, user)
+			.then((response) => {
+				sessionStorage.setItem("user", response.data);
+
+				if (response.data.role === "RESIDENT") {
+					window.location = "/residentPage";
+				}
+				if (response.data.role === "ADMIN") {
+					window.location = "/adminMainPage";
+				}
+				if (response.data.role === "VOLUNTEER") {
+					window.location = "/volunteerPage";
+				}
+				// flushForm();
+			})
+			.catch((error) => {
+				alert(error.message);
+			});
 	};
 
 	return (

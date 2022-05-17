@@ -1,10 +1,11 @@
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
 export default function AdminAddWaring() {
 	//get ip
 
 	const ip = sessionStorage.getItem("ip");
-
+	const user = sessionStorage.getItem("user");
 	const [warning, setWarning] = useState({
 		title: "",
 		description: "",
@@ -19,9 +20,28 @@ export default function AdminAddWaring() {
 	let submitHandler = () => {
 		console.log(warning);
 
+		let particular = "/wh/internal/new-alert";
+		let url = ip + particular;
+		var config = {
+			headers: { "X-Email": user.email },
+		};
 		// to do axios call
 
-		flushForm();
+		let payload = {
+			name: warning.title,
+			description: warning.description,
+			degreeOfImportance: warning.grade,
+			occurrenceDate: warning.date,
+		};
+		axios
+			.post(url, payload, config)
+			.then((response) => {
+				alert(response.data.message);
+				flushForm();
+			})
+			.catch((error) => {
+				alert(error.message);
+			});
 	};
 
 	return (

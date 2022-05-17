@@ -1,10 +1,32 @@
 import React from "react";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import VolunteerCard from "../../microcomponents/VolunteerCard";
+import { useEffect, useState } from "react";
+import axios from "axios";
 export default function AdminVolunteerCampaigns() {
 	const ip = sessionStorage.getItem("ip");
 	const user = sessionStorage.getItem("user");
 
+	const [campaigns, setCampaigns] = useState([]);
+	useEffect(() => {
+		let particular = "/wh/internal/volunteer-recruitment-campaigns";
+		let url = ip + particular;
+		// to do axios call
+
+		var config = {
+			headers: { "X-Email": user.email },
+		};
+
+		axios
+			.get(url, config)
+			.then((response) => {
+				response.data.forEach((node) => (node.isAdmin = 1));
+				setCampaigns(response.data);
+			})
+			.catch((error) => {
+				alert(error.message);
+			});
+	}, []);
 	const information = {
 		title: "Volunteer Recruitment campaign name",
 		description: "Some description",

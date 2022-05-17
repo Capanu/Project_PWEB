@@ -1,22 +1,32 @@
 import "../../microcomponents/cssToolbox.css";
 import { useState } from "react";
-
+import axios from "axios";
 function RegisterPage() {
 	//get ip
 	const ip = sessionStorage.getItem("ip");
 
-	const [user, setUser] = useState({ email: "", password: "", type: "" });
+	const [user, setUser] = useState({ email: "", password: "", role: "" });
 
 	let flushForm = () => {
-		setUser({ email: "", password: "", type: "admin" });
+		setUser({ email: "", password: "", role: "ADMIN" });
 	};
 
 	let submitHandler = () => {
-		console.log(user);
+		let particular = "/wh/public/register";
+		let url = ip + particular;
 
 		// to do axios call
 
-		flushForm();
+		// GET request using axios inside useEffect React hook
+		axios
+			.post(url, user)
+			.then((response) => {
+				alert("Succesful registration!");
+				flushForm();
+			})
+			.catch((error) => {
+				alert(error.message);
+			});
 	};
 
 	return (
@@ -26,7 +36,7 @@ function RegisterPage() {
 					<label>Email:</label>
 					<br />
 					<input
-						type="text"
+						role="text"
 						id="email"
 						placeholder="Please insert your email here"
 						value={user.email}
@@ -38,7 +48,7 @@ function RegisterPage() {
 					<label>Password:</label>
 					<br />
 					<input
-						type="text"
+						role="text"
 						id="password"
 						placeholder="Please insert your password here"
 						value={user.password}
@@ -47,18 +57,18 @@ function RegisterPage() {
 				</div>
 
 				<div className="war-input-field">
-					<label>Account type:</label>
+					<label>Account role:</label>
 					<br />
 
 					<select
 						name="cars"
 						id="cars"
-						value={user.type}
-						onChange={(e) => setUser({ ...user, type: e.target.value })}
+						value={user.role}
+						onChange={(e) => setUser({ ...user, role: e.target.value })}
 					>
-						<option value="admin">Admin</option>
-						<option value="resident">Resident</option>
-						<option value="volunteer">Volunteer</option>
+						<option value="ADMIN">ADMIN</option>
+						<option value="RESIDENT">RESIDENT</option>
+						<option value="VOLUNTEER">VOLUNTEER</option>
 					</select>
 				</div>
 

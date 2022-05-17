@@ -39,7 +39,7 @@ export default function ViewFundraisingCampaignPage() {
 					/>
 				</div>
 				<div className="war-input-field">
-					<label>Tartge amount:</label>
+					<label>Target amount:</label>
 					<br />
 					<input
 						type="text"

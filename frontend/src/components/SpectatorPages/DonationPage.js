@@ -1,8 +1,29 @@
 import "../../microcomponents/cssToolbox.css";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import FundrasingCard from "../../microcomponents/FundrasingCard";
+
+import { useEffect, useState } from "react";
+import axios from "axios";
 function DonationPage() {
 	//get ip
+
+	const ip = sessionStorage.getItem("ip");
+
+	const [campaigns, setCampaigns] = useState([]);
+	useEffect(() => {
+		let particular = "/wh/public/fundraising-campaigns";
+		let url = ip + particular;
+		// to do axios call
+		axios
+			.get(url)
+			.then((response) => {
+				response.data.forEach((node) => (node.isAdmin = 0));
+				setCampaigns(response.data);
+			})
+			.catch((error) => {
+				alert(error.message);
+			});
+	}, []);
 	const information = {
 		name: "Fundrasing campaign name!",
 		description: "Some description",
@@ -19,7 +40,6 @@ function DonationPage() {
 	const cards = arr.map((campaign) => {
 		return <FundrasingCard information={campaign} />;
 	});
-	const ip = sessionStorage.getItem("ip");
 	return (
 		<div id="donation-page">
 			<Navbar style={{ background: "#1AC0C6" }} variant="dark">

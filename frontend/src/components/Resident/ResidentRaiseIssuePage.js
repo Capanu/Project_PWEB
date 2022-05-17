@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 function ResidentRaiseIssuePage() {
 	const ip = sessionStorage.getItem("ip");
 	const user = sessionStorage.getItem("user");
@@ -6,10 +7,9 @@ function ResidentRaiseIssuePage() {
 	const [payload, setPayload] = useState({
 		name: "",
 		description: "",
-		date: "",
 	});
 	let flushForm = () => {
-		setPayload({ name: "", description: "", date: "" });
+		setPayload({ name: "", description: "" });
 	};
 
 	let submitHandler = () => {
@@ -17,7 +17,23 @@ function ResidentRaiseIssuePage() {
 
 		// to do axios call
 
-		flushForm();
+		let particular = "/wh/internal/new-issue";
+		let url = ip + particular;
+		var config = {
+			headers: { "X-Email": user.email },
+		};
+		// to do axios call
+
+		// GET request using axios inside useEffect React hook
+		axios
+			.post(url, user, config)
+			.then((response) => {
+				alert(response.data.message);
+				flushForm();
+			})
+			.catch((error) => {
+				alert(error.message);
+			});
 	};
 
 	return (
@@ -46,18 +62,6 @@ function ResidentRaiseIssuePage() {
 						onChange={(e) =>
 							setPayload({ ...payload, description: e.target.value })
 						}
-					></input>
-				</div>
-
-				<div className="war-input-field">
-					<label>Send date:</label>
-					<br />
-					<input
-						type="date"
-						id="date"
-						placeholder="Please insert your date here"
-						value={payload.date}
-						onChange={(e) => setPayload({ ...payload, date: e.target.value })}
 					></input>
 				</div>
 

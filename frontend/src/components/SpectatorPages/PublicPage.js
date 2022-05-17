@@ -1,7 +1,7 @@
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 function PublicPage() {
 	// set ip
-	const ip = "Ip ul de la manoo!!";
+	const ip = "86.126.144.30:8075";
 
 	sessionStorage.setItem("ip", ip);
 

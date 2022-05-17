@@ -1,12 +1,13 @@
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
 export default function AdminAddFoundraisingCampaign() {
 	const ip = sessionStorage.getItem("ip");
+	const user = sessionStorage.getItem("user");
 
 	const [fundCampaign, setCampaign] = useState({
 		name: "",
 		description: "",
-		targetAmount: "",
 		targetAmount: "",
 		iban: "",
 	});
@@ -16,7 +17,6 @@ export default function AdminAddFoundraisingCampaign() {
 			name: "",
 			description: "",
 			targetAmount: "",
-			targetAmount: "",
 			iban: "",
 		});
 	};
@@ -25,8 +25,24 @@ export default function AdminAddFoundraisingCampaign() {
 		console.log(fundCampaign);
 
 		// to do axios call
+		let particular = "/wh/internal/new-fundraising-campaig";
+		let url = ip + particular;
+		var config = {
+			headers: { "X-Email": user.email },
+		};
 
-		flushForm();
+		// to do axios call
+
+		// GET request using axios inside useEffect React hook
+		axios
+			.post(url, fundCampaign, config)
+			.then((response) => {
+				alert(response.data.message);
+				flushForm();
+			})
+			.catch((error) => {
+				alert(error.message);
+			});
 	};
 	return (
 		<div className="war-container">

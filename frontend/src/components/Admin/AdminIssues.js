@@ -1,10 +1,31 @@
 import React from "react";
 import RaisedIssue from "../../microcomponents/RaisedIssue";
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import axios from "axios";
 export default function AdminIssues() {
 	const ip = sessionStorage.getItem("ip");
 	const user = sessionStorage.getItem("user");
+	const [issues, setIssues] = useState([]);
+	useEffect(() => {
+		let particular = "/wh/internal/issues";
+		let url = ip + particular;
+		var config = {
+			headers: { "X-Email": user.email },
+		};
+		// to do axios call
 
+		// GET request using axios inside useEffect React hook
+		axios
+			.get(url, config)
+			.then((response) => {
+				alert(response.data);
+				setIssues(response.data);
+			})
+			.catch((error) => {
+				alert(error.message);
+			});
+	}, []);
 	const information = {
 		title: "Cade apa ba!!",
 		description: "Some description",
@@ -17,6 +38,7 @@ export default function AdminIssues() {
 	}
 
 	const cards = arr.map((campaign) => {
+		// use issues
 		return <RaisedIssue information={campaign} />;
 	});
 

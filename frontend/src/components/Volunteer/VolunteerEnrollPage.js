@@ -1,10 +1,32 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 function VolunteerEnrollPage() {
 	const campaign = JSON.parse(sessionStorage.getItem("volunteerCampaign"));
-
+	const ip = sessionStorage.getItem("ip");
+	const user = sessionStorage.getItem("user");
 	let submitHandler = () => {
 		console.log(campaign);
 
 		// to do axios call
+		let particular = "/wh/internal/enroll";
+		let url = ip + particular;
+		var config = {
+			headers: { "X-Email": user.email },
+		};
+		let payload = {
+			campaignId: campaign.campaignId,
+		};
+		// to do axios call
+
+		// GET request using axios inside useEffect React hook
+		axios
+			.post(url, payload, config)
+			.then((response) => {
+				alert(response.data.message);
+			})
+			.catch((error) => {
+				alert(error.message);
+			});
 	};
 
 	return (

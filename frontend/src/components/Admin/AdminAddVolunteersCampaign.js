@@ -1,16 +1,18 @@
 import React from "react";
+import axios from "axios";
 import { useState } from "react";
 export default function AdminAddVolunteersCampaign() {
 	const ip = sessionStorage.getItem("ip");
+	const user = sessionStorage.getItem("user");
 
 	const [campaign, setCampaign] = useState({
 		name: "",
 		description: "",
-		targetNr: "",
+		targetNumberOfVolunteers: "",
 	});
 
 	let flushForm = () => {
-		setCampaign({ name: "", description: "", targetNr: "" });
+		setCampaign({ name: "", description: "", targetNumberOfVolunteers: "" });
 	};
 
 	let submitHandler = () => {
@@ -18,7 +20,25 @@ export default function AdminAddVolunteersCampaign() {
 
 		// to do axios call
 
-		flushForm();
+		// to do axios call
+		let particular = "/wh/internal/new-volunteer-recruitment-campaign";
+		let url = ip + particular;
+		var config = {
+			headers: { "X-Email": user.email },
+		};
+
+		// to do axios call
+
+		// GET request using axios inside useEffect React hook
+		axios
+			.post(url, campaign, config)
+			.then((response) => {
+				alert(response.data.message);
+				flushForm();
+			})
+			.catch((error) => {
+				alert(error.message);
+			});
 	};
 	return (
 		<div className="war-container">
@@ -56,9 +76,12 @@ export default function AdminAddVolunteersCampaign() {
 						placeholder="target number of volunteers"
 						type="text"
 						id="current-nr"
-						value={campaign.targetNr}
+						value={campaign.targetNumberOfVolunteers}
 						onChange={(e) =>
-							setCampaign({ ...campaign, targetNr: e.target.value })
+							setCampaign({
+								...campaign,
+								targetNumberOfVolunteers: e.target.value,
+							})
 						}
 					/>
 				</div>
