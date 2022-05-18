@@ -1,8 +1,17 @@
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import { env } from "../../env";
 function PublicPage() {
 	// set ip
-	const ip = "86.126.144.30:8075";
+	let ip;
 
+	if (!env.REACT_APP_IP || !env.REACT_APP_PORT) {
+		ip = "86.126.144.30:8075";
+	} else {
+		ip = env.REACT_APP_IP + ":" + env.REACT_APP_PORT;
+		console.log(ip);
+	}
+
+	console.log(ip);
 	sessionStorage.setItem("ip", ip);
 
 	return (
@@ -55,6 +64,9 @@ function PublicPage() {
 				with desktop publishing software like Aldus PageMaker including versions
 				of Lorem Ipsum.
 			</p>
+			<div style={{ backgroundColor: env.REACT_APP_COLOR, height: "100px" }}>
+				<span>{env.REACT_APP_MAIN_TEXT}</span>
+			</div>
 		</div>
 	);
 }
