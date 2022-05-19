@@ -1,9 +1,11 @@
 import { Card, Button, CardGroup } from "react-bootstrap";
 import "../microcomponents/cssToolbox.css";
 function VolunteerCard(props) {
-	const title = props == undefined ? "No ttitle" : props.information.title;
+	const title = props == undefined ? "No ttitle" : props.information.name;
 	const currentNr =
-		props == undefined ? "No date" : props.information.currentNr;
+		props == undefined
+			? "No date"
+			: props.information.currentNumberOfVolunteers;
 
 	return (
 		<Card

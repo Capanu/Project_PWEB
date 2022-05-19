@@ -21,25 +21,13 @@ export default function AdminVolunteerCampaigns() {
 		axios
 			.get(url, config)
 			.then((response) => {
-				response.data.forEach((node) => (node.isAdmin = 1));
+				response.data.forEach((node) => (node.viewOrSend = 0));
 				setCampaigns(response.data);
 			})
 			.catch((error) => {
 				alert(error.message);
 			});
 	}, []);
-	const information = {
-		title: "Volunteer Recruitment campaign name",
-		description: "Some description",
-		currentNr: "12",
-		targetNr: "22",
-		viewOrSend: 0,
-	};
-
-	var arr = [];
-	for (let i = 1; i <= 13; i++) {
-		arr = [...arr, information];
-	}
 
 	const cards = campaigns.map((campaign) => {
 		return <VolunteerCard information={campaign} />;
@@ -82,11 +70,12 @@ export default function AdminVolunteerCampaigns() {
 			<Button
 				onClick={() => (window.location = "/admin/addVolunteersCampaigns")}
 				style={{
-					marginLeft: "80%",
+					marginLeft: "1750px",
 					background: "red",
 					color: "white",
 					padding: "10px",
-					marginBottom: "100px",
+					marginBottom: "10px",
+					marginTop: "20px",
 				}}
 			>
 				New Campaign

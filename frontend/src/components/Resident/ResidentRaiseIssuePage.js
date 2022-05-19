@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 function ResidentRaiseIssuePage() {
 	const ip = sessionStorage.getItem("ip");
-	const user = sessionStorage.getItem("user");
+	const user = JSON.parse(sessionStorage.getItem("user"));
 
 	const [payload, setPayload] = useState({
 		name: "",
@@ -54,7 +54,7 @@ function ResidentRaiseIssuePage() {
 				<div className="war-input-field">
 					<label>Description:</label>
 					<br />
-					<input
+					<textarea
 						type="text"
 						id="description"
 						placeholder="Please insert your description here"
@@ -62,7 +62,7 @@ function ResidentRaiseIssuePage() {
 						onChange={(e) =>
 							setPayload({ ...payload, description: e.target.value })
 						}
-					></input>
+					/>
 				</div>
 
 				<button

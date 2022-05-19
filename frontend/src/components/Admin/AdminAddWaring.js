@@ -5,16 +5,23 @@ export default function AdminAddWaring() {
 	//get ip
 
 	const ip = sessionStorage.getItem("ip");
-	const user = sessionStorage.getItem("user");
+	const user = JSON.parse(sessionStorage.getItem("user"));
 	const [warning, setWarning] = useState({
 		title: "",
 		description: "",
 		date: "",
-		grade: "",
+		hours: "",
+		degreeOfImportance: "",
 	});
 
 	let flushForm = () => {
-		setWarning({ title: "", description: "", date: "", grade: "" });
+		setWarning({
+			title: "",
+			description: "",
+			date: "",
+			hours: "",
+			degreeOfImportance: "",
+		});
 	};
 
 	let submitHandler = () => {
@@ -30,8 +37,8 @@ export default function AdminAddWaring() {
 		let payload = {
 			name: warning.title,
 			description: warning.description,
-			degreeOfImportance: warning.grade,
-			occurrenceDate: warning.date,
+			degreeOfImportance: warning.degreeOfImportance,
+			occurrenceDate: warning.date + " " + warning.hours + ":00",
 		};
 		axios
 			.post(url, payload, config)
@@ -62,7 +69,7 @@ export default function AdminAddWaring() {
 				<div className="war-input-field">
 					<label>Description:</label>
 					<br />
-					<input
+					<textarea
 						placeholder="Please type description"
 						type="text"
 						id="description"
@@ -70,29 +77,48 @@ export default function AdminAddWaring() {
 						onChange={(e) =>
 							setWarning({ ...warning, description: e.target.value })
 						}
-					></input>
+					/>
 				</div>
 				<div className="war-input-field">
 					<label>Date:</label>
 					<br />
 					<input
 						placeholder="Please type date"
-						type="text"
+						type="date"
 						id="date"
 						value={warning.date}
 						onChange={(e) => setWarning({ ...warning, date: e.target.value })}
 					></input>
 				</div>
+
 				<div className="war-input-field">
-					<label>Importance grade:</label>
+					<label>Date:</label>
 					<br />
 					<input
-						placeholder="Please type grade"
-						type="text"
-						id="grade"
-						value={warning.grade}
-						onChange={(e) => setWarning({ ...warning, grade: e.target.value })}
+						placeholder="Please type date"
+						type="time"
+						id="hours"
+						value={warning.hours}
+						onChange={(e) => setWarning({ ...warning, hours: e.target.value })}
 					></input>
+				</div>
+
+				<div className="war-input-field">
+					<label>Account role:</label>
+					<br />
+
+					<select
+						name="grade"
+						id="grade"
+						value={warning.degreeOfImportance}
+						onChange={(e) =>
+							setWarning({ ...warning, degreeOfImportance: e.target.value })
+						}
+					>
+						<option value="CRITICAL">CRITICAL</option>
+						<option value="IMPORTANT">IMPORTANT</option>
+						<option value="UNIMPORTANT">UNIMPORTANT</option>
+					</select>
 				</div>
 				<button
 					className="submit-button"

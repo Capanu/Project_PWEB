@@ -2,8 +2,7 @@ import React from "react";
 
 export default function IssueView() {
 	const issue = JSON.parse(sessionStorage.getItem("issue"));
-
-	console.log(issue);
+	let date = new Date(issue.creationDate);
 	return (
 		<div className="war-container">
 			<div className="war-form">
@@ -13,7 +12,7 @@ export default function IssueView() {
 					<input
 						type="text"
 						id="alert-name"
-						value={issue.title}
+						value={issue.name}
 						readOnly
 					></input>
 				</div>
@@ -21,17 +20,34 @@ export default function IssueView() {
 				<div className="war-input-field">
 					<label>Description:</label>
 					<br />
-					<input
+					<textarea
 						type="text"
 						id="description"
 						value={issue.description}
 						readOnly
-					></input>
+					/>
 				</div>
 				<div className="war-input-field">
 					<label>Send date:</label>
 					<br />
-					<input type="text" id="date" value={issue.date} readOnly></input>
+					<input
+						type="text"
+						id="date"
+						value={
+							date.getDate() +
+							"/" +
+							(date.getMonth() + 1) +
+							"/" +
+							date.getFullYear() +
+							" " +
+							date.getHours() +
+							":" +
+							date.getMinutes() +
+							":" +
+							date.getSeconds()
+						}
+						readOnly
+					></input>
 				</div>
 			</div>
 		</div>

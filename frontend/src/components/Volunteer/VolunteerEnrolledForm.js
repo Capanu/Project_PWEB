@@ -10,7 +10,7 @@ function VolunteerEnrolledForm() {
 					<input
 						type="text"
 						id="name-campaign"
-						value={campaign.title}
+						value={campaign.name}
 						readOnly
 					/>
 				</div>
@@ -18,7 +18,7 @@ function VolunteerEnrolledForm() {
 				<div className="war-input-field">
 					<label>Description:</label>
 					<br />
-					<input
+					<textarea
 						type="text"
 						id="description"
 						value={campaign.description}
@@ -32,17 +32,17 @@ function VolunteerEnrolledForm() {
 					<input
 						type="text"
 						id="current-nr"
-						value={campaign.currentNr}
+						value={campaign.currentNumberOfVolunteers}
 						readOnly
 					/>
 				</div>
 				<div className="war-input-field">
-					<label>Tartge number of volunteers:</label>
+					<label>Target number of volunteers:</label>
 					<br />
 					<input
 						type="text"
 						id="current-nr"
-						value={campaign.targetNr}
+						value={campaign.targetNumberOfVolunteers}
 						readOnly
 					/>
 				</div>

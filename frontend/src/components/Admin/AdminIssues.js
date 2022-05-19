@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 export default function AdminIssues() {
 	const ip = sessionStorage.getItem("ip");
-	const user = sessionStorage.getItem("user");
+	const user = JSON.parse(sessionStorage.getItem("user"));
 	const [issues, setIssues] = useState([]);
 	useEffect(() => {
 		let particular = "/wh/internal/issues";
@@ -19,25 +19,14 @@ export default function AdminIssues() {
 		axios
 			.get(url, config)
 			.then((response) => {
-				alert(response.data);
 				setIssues(response.data);
 			})
 			.catch((error) => {
 				alert(error.message);
 			});
 	}, []);
-	const information = {
-		title: "Cade apa ba!!",
-		description: "Some description",
-		date: "12-1-2022",
-	};
 
-	var arr = [];
-	for (let i = 1; i <= 13; i++) {
-		arr = [...arr, information];
-	}
-
-	const cards = arr.map((campaign) => {
+	const cards = issues.map((campaign) => {
 		// use issues
 		return <RaisedIssue information={campaign} />;
 	});

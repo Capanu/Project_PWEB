@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 export default function AdminAddVolunteersCampaign() {
 	const ip = sessionStorage.getItem("ip");
-	const user = sessionStorage.getItem("user");
+	const user = JSON.parse(sessionStorage.getItem("user"));
 
 	const [campaign, setCampaign] = useState({
 		name: "",
@@ -44,7 +44,7 @@ export default function AdminAddVolunteersCampaign() {
 		<div className="war-container">
 			<div className="war-form">
 				<div className="war-input-field">
-					<label>Volunteer Campaing name:</label>
+					<label>Volunteer Campaign name:</label>
 					<br />
 					<input
 						placeholder="Please type Volunteer Campaign name"
@@ -58,7 +58,7 @@ export default function AdminAddVolunteersCampaign() {
 				<div className="war-input-field">
 					<label>Description:</label>
 					<br />
-					<input
+					<textarea
 						placeholder="Please type description"
 						type="text"
 						id="description"
