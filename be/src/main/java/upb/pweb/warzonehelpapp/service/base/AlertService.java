@@ -21,6 +21,8 @@ public class AlertService {
     private final AlertRepository repository;
     private final DegreeOfImportanceRepository degreeOfImportanceRepository;
 
+    private final UserService userService;
+
     public DegreeOfImportance findDegreeOfImportanceByName(String name) throws BaseException {
         return degreeOfImportanceRepository.findByName(name).orElseThrow(() ->
                 new InvalidDegreeOfImportanceException(name));
@@ -37,6 +39,8 @@ public class AlertService {
                 .build();
 
         repository.save(newAlert);
+
+        userService.alertResidentsAndVolunteers(newAlert);
 
         return new BasicSuccessResponse();
     }

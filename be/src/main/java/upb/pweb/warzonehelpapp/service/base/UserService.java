@@ -2,6 +2,7 @@ package upb.pweb.warzonehelpapp.service.base;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import upb.pweb.warzonehelpapp.controller.public_api.resources.LoginRequest;
 import upb.pweb.warzonehelpapp.controller.public_api.resources.LoginResponse;
@@ -11,9 +12,14 @@ import upb.pweb.warzonehelpapp.exception.BaseException;
 import upb.pweb.warzonehelpapp.exception.EmailNotUniqueException;
 import upb.pweb.warzonehelpapp.exception.InvalidPasswordException;
 import upb.pweb.warzonehelpapp.exception.UserNotFoundException;
+import upb.pweb.warzonehelpapp.model.Alert;
 import upb.pweb.warzonehelpapp.model.Role;
 import upb.pweb.warzonehelpapp.model.User;
 import upb.pweb.warzonehelpapp.repository.UserRepository;
+import upb.pweb.warzonehelpapp.service.EmailSenderService;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -22,6 +28,7 @@ public class UserService {
     private final UserRepository repository;
 
     private final RoleService roleService;
+    private final EmailSenderService emailSenderService;
 
     public User findByEmail(String email) throws UserNotFoundException {
         return repository.findUserByEmail(email).orElseThrow(() -> new UserNotFoundException(email));
@@ -83,5 +90,18 @@ public class UserService {
         response.setRole(newUser.getRole().getName());
 
         return response;
+    }
+
+    @Async
+    public void alertResidentsAndVolunteers(Alert alert) {
+        List<User> users = repository.findAll();
+
+        List<User> residentsAndVolunteers = users.stream().filter(user ->
+                user.getRole().getName().equals("VOLUNTEER") || user.getRole().getName().equals("RESIDENT"))
+                .collect(Collectors.toList());
+
+        for (User u : residentsAndVolunteers) {
+            emailSenderService.sendSimpleEmail(u.getEmail(), alert.getDescription(), "[" + alert.getDegreeOfImportance().getName() + "] " + alert.getName());
+        }
     }
 }
