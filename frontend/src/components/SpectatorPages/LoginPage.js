@@ -22,7 +22,7 @@ function LoginPage() {
 		axios
 			.post(url, user)
 			.then((response) => {
-				sessionStorage.setItem("user", response.data);
+				sessionStorage.setItem("user", JSON.stringify(response.data));
 
 				if (response.data.role === "RESIDENT") {
 					window.location = "/residentPage";

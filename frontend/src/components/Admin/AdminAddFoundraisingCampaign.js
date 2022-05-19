@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 export default function AdminAddFoundraisingCampaign() {
 	const ip = sessionStorage.getItem("ip");
-	const user = sessionStorage.getItem("user");
+	const user = JSON.parse(sessionStorage.getItem("user"));
 
 	const [fundCampaign, setCampaign] = useState({
 		name: "",
@@ -22,10 +22,10 @@ export default function AdminAddFoundraisingCampaign() {
 	};
 
 	let submitHandler = () => {
-		console.log(fundCampaign);
+		console.log(user);
 
 		// to do axios call
-		let particular = "/wh/internal/new-fundraising-campaig";
+		let particular = "/wh/internal/new-fundraising-campaign";
 		let url = ip + particular;
 		var config = {
 			headers: { "X-Email": user.email },
@@ -64,7 +64,7 @@ export default function AdminAddFoundraisingCampaign() {
 				<div className="war-input-field">
 					<label>Description:</label>
 					<br />
-					<input
+					<textarea
 						placeholder="Please  enter description"
 						type="text"
 						id="description"

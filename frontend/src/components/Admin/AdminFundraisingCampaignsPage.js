@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 export default function AdminFundraisingCampaignsPage() {
 	const ip = sessionStorage.getItem("ip");
-	const user = sessionStorage.getItem("user");
+	const user = JSON.parse(sessionStorage.getItem("user"));
 
 	const [campaigns, setCampaigns] = useState([]);
 	useEffect(() => {
@@ -13,6 +13,7 @@ export default function AdminFundraisingCampaignsPage() {
 		let url = ip + particular;
 		// to do axios call
 
+		console.log(user);
 		var config = {
 			headers: { "X-Email": user.email },
 		};
@@ -27,21 +28,8 @@ export default function AdminFundraisingCampaignsPage() {
 				alert(error.message);
 			});
 	}, []);
-	const information = {
-		name: "Fundrasing campaign name!",
-		description: "Some description",
-		currentAmount: 12,
-		targetAmount: 1000,
-		isAdmin: 1,
-		iban: 111111111,
-	};
 
-	var arr = [];
-	for (let i = 1; i <= 13; i++) {
-		arr = [...arr, information];
-	}
-
-	const cards = arr.map((campaign) => {
+	const cards = campaigns.map((campaign) => {
 		return <FundrasingCard information={campaign} />;
 	});
 	return (
@@ -81,11 +69,12 @@ export default function AdminFundraisingCampaignsPage() {
 			<Button
 				onClick={() => (window.location = "/admin/addFoundraisingCampaign")}
 				style={{
-					marginLeft: "80%",
+					marginLeft: "1750px",
 					background: "red",
 					color: "white",
 					padding: "10px",
-					marginBottom: "100px",
+					marginBottom: "10px",
+					marginTop: "20px",
 				}}
 			>
 				New Campaign

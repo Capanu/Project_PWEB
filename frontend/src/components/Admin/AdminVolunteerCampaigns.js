@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 export default function AdminVolunteerCampaigns() {
 	const ip = sessionStorage.getItem("ip");
-	const user = sessionStorage.getItem("user");
+	const user = JSON.parse(sessionStorage.getItem("user"));
 
 	const [campaigns, setCampaigns] = useState([]);
 	useEffect(() => {
@@ -17,6 +17,7 @@ export default function AdminVolunteerCampaigns() {
 			headers: { "X-Email": user.email },
 		};
 
+		console.log(config);
 		axios
 			.get(url, config)
 			.then((response) => {
@@ -40,7 +41,7 @@ export default function AdminVolunteerCampaigns() {
 		arr = [...arr, information];
 	}
 
-	const cards = arr.map((campaign) => {
+	const cards = campaigns.map((campaign) => {
 		return <VolunteerCard information={campaign} />;
 	});
 

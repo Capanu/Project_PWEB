@@ -20,7 +20,7 @@ export default function ViewFundraisingCampaignPage() {
 				<div className="war-input-field">
 					<label>Description:</label>
 					<br />
-					<input
+					<textarea
 						type="text"
 						id="description"
 						value={campaign.description}

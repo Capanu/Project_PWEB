@@ -56,6 +56,17 @@ align-items:center;
 
 
 
+textarea {
+    border-radius: 20px;
+    width: 18vw;
+    text-align: center;
+}
+
+textarea:focus {
+    outline: 2px solid #FDFA66;     /* oranges! yey */
+}
+
+
 
 input {
     
@@ -91,6 +102,7 @@ input:focus{
     .donation-campaigns {
         overflow: auto;
         margin-top: 10px;
+        margin-left: 50px;
         display: grid;
         grid-template-columns: 10vw 10vw 10vw;
         column-gap: 100px;

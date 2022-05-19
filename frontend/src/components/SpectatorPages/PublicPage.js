@@ -5,7 +5,7 @@ function PublicPage() {
 	let ip;
 
 	if (!env.REACT_APP_IP || !env.REACT_APP_PORT) {
-		ip = "86.126.144.30:8075";
+		ip = "http://86.126.144.30:8075";
 	} else {
 		ip = env.REACT_APP_IP + ":" + env.REACT_APP_PORT;
 		console.log(ip);

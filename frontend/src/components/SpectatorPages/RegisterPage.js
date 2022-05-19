@@ -16,7 +16,7 @@ function RegisterPage() {
 		let url = ip + particular;
 
 		// to do axios call
-
+		console.log(url);
 		// GET request using axios inside useEffect React hook
 		axios
 			.post(url, user)
