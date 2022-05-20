@@ -32,4 +32,10 @@ public class FundraisingCampaignsManagementController {
     public ResponseEntity<?> getAllFundraisingCampaigns() {
         return ResponseEntity.ok(fundraisingCampaignService.listAllFundraisingCampaigns());
     }
+
+    @AuthorizedRoles(roles = "ADMIN")
+    @GetMapping("/donations")
+    public ResponseEntity<?> getAllDonations() {
+        return ResponseEntity.ok(fundraisingCampaignService.listAllDonations());
+    }
 }

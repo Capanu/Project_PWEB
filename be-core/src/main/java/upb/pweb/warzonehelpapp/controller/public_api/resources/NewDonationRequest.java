@@ -10,5 +10,17 @@ public class NewDonationRequest {
     private Integer campaignId;
 
     @NotNull
+    private String firstname;
+
+    @NotNull
+    private String lastname;
+
+    @NotNull
+    private String email;
+
+    @NotNull
+    private String cardCode;
+
+    @NotNull
     private Integer donatedAmount;
 }
