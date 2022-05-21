@@ -17,6 +17,9 @@ import upb.pweb.warzonehelpapp.repository.AlertRepository;
 import upb.pweb.warzonehelpapp.repository.DegreeOfImportanceRepository;
 import upb.pweb.warzonehelpapp.service.AlertQueuePublisherService;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -33,13 +36,17 @@ public class AlertService {
                 new InvalidDegreeOfImportanceException(name));
     }
 
-    public BasicSuccessResponse newAlert(NewAlertRequest request) throws BaseException, JsonProcessingException, JSONException {
+    public BasicSuccessResponse newAlert(NewAlertRequest request) throws BaseException, JsonProcessingException, JSONException, ParseException {
         DegreeOfImportance degreeOfImportance = findDegreeOfImportanceByName(request.getDegreeOfImportance());
+
+        // Format date
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date1 = formatter.parse(request.getOccurrenceDate());
 
         Alert newAlert = Alert.builder()
                 .name(request.getName())
                 .description(request.getDescription())
-                .occurrenceDate(request.getOccurrenceDate())
+                .occurrenceDate(date1)
                 .degreeOfImportance(degreeOfImportance)
                 .build();
 

@@ -13,6 +13,7 @@ import upb.pweb.warzonehelpapp.exception.BaseException;
 import upb.pweb.warzonehelpapp.service.base.AlertService;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 
 @RestController
 @RequestMapping("/internal")
@@ -23,7 +24,9 @@ public class AlertsManagementController {
 
     @AuthorizedRoles(roles = "ADMIN")
     @PostMapping("/new-alert")
-    public ResponseEntity<?> newAlert(@RequestBody @Valid NewAlertRequest request) throws BaseException, JsonProcessingException, JSONException {
+    public ResponseEntity<?> newAlert(@RequestBody @Valid NewAlertRequest request) throws BaseException, JsonProcessingException, JSONException, ParseException {
+        log.error(request.getOccurrenceDate());
+
         BasicSuccessResponse response = alertService.newAlert(request);
 
         return ResponseEntity.ok(response);
