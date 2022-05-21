@@ -73,7 +73,7 @@ function LoginPage() {
 						submitHandler();
 					}}
 				>
-					<strong>Log in!</strong>
+					<strong>Login</strong>
 				</button>
 			</div>
 		</div>

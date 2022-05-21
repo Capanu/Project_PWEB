@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 function DonatePageForm(props) {
 	const ip = sessionStorage.getItem("ip");
 
@@ -12,8 +13,6 @@ function DonatePageForm(props) {
 		lastName: "",
 		email: "",
 		cardCode: "",
-		date: "",
-		code: "",
 		insertSum: "",
 	});
 
@@ -27,16 +26,34 @@ function DonatePageForm(props) {
 			lastName: "",
 			email: "",
 			cardCode: "",
-			date: "",
-			code: "",
 			insertSum: "",
 		});
 	};
 
 	let submitHandler = () => {
 		console.log(donation);
+		let particular = "/wh/public/new-donation";
+		let url = ip + particular;
 
 		// to do axios call
+		let payload = {
+			campaignId: campaign.id,
+			firstname: donation.firstName,
+			lastname: donation.lastName,
+			email: donation.email,
+			cardCode: donation.cardCode,
+			donatedAmount: donation.insertSum,
+		};
+		axios
+			.post(url, payload)
+			.then((response) => {
+				alert(response.data.message);
+				flushForm();
+				window.location = "/donationPage";
+			})
+			.catch((error) => {
+				alert(error.message);
+			});
 
 		flushForm();
 	};
@@ -63,7 +80,7 @@ function DonatePageForm(props) {
 						<div className="war-input-field-donation">
 							<label>Description:</label>
 							<br />
-							<input
+							<textarea
 								type="text"
 								id="description"
 								value={campaign.description}
@@ -71,7 +88,7 @@ function DonatePageForm(props) {
 									setDonation({ ...donation, description: e.target.value })
 								}
 								readOnly
-							></input>
+							/>
 						</div>
 
 						<div className="war-input-field-donation">
@@ -101,7 +118,9 @@ function DonatePageForm(props) {
 								readOnly
 							></input>
 						</div>
+					</div>
 
+					<div id="second-half">
 						<div className="war-input-field-donation">
 							<label>Firstname:</label>
 							<br />
@@ -115,7 +134,6 @@ function DonatePageForm(props) {
 								placeholder="Firstname here please!"
 							></input>
 						</div>
-
 						<div className="war-input-field-donation">
 							<label>Lastname :</label>
 							<br />
@@ -129,9 +147,6 @@ function DonatePageForm(props) {
 								}
 							></input>
 						</div>
-					</div>
-
-					<div id="second-half">
 						<div className="war-input-field-donation">
 							<label>Email :</label>
 							<br />
@@ -155,34 +170,6 @@ function DonatePageForm(props) {
 								value={donation.cardCode}
 								onChange={(e) =>
 									setDonation({ ...donation, cardCode: e.target.value })
-								}
-							></input>
-						</div>
-
-						<div className="war-input-field-donation">
-							<label>Date :</label>
-							<br />
-							<input
-								type="date"
-								id="date"
-								placeholder="Lastname here please!"
-								value={donation.date}
-								onChange={(e) =>
-									setDonation({ ...donation, date: e.target.value })
-								}
-							></input>
-						</div>
-
-						<div className="war-input-field-donation">
-							<label>Code: </label>
-							<br />
-							<input
-								type="text"
-								id="code"
-								placeholder="Code please here!"
-								value={donation.code}
-								onChange={(e) =>
-									setDonation({ ...donation, code: e.target.value })
 								}
 							></input>
 						</div>

@@ -22,6 +22,7 @@ export default function AdminMainPage() {
 						</Nav.Link>
 						<Nav.Link href="/admin/warnings">Warnings and Alerts</Nav.Link>
 						<Nav.Link href="/admin/issues">Raised Issues</Nav.Link>
+						<Nav.Link href="/admin/donorsPage">Show Donors</Nav.Link>
 					</Nav>
 					<Nav>
 						<Button
@@ -29,7 +30,10 @@ export default function AdminMainPage() {
 							style={{
 								background: "#FDFA66",
 								color: "black",
-								marginLeft: "350%",
+								marginLeft: "250%",
+								borderRadius: "10px",
+								borderColor: "#FDFA66",
+								width: "100px",
 							}}
 						>
 							Logout

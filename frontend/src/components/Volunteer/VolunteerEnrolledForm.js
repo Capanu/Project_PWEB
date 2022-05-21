@@ -5,7 +5,7 @@ function VolunteerEnrolledForm() {
 		<div className="war-container">
 			<div className="war-form">
 				<div className="war-input-field">
-					<label>Campaing name:</label>
+					<label>Campaign name:</label>
 					<br />
 					<input
 						type="text"

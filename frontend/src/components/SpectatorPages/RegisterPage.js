@@ -5,10 +5,14 @@ function RegisterPage() {
 	//get ip
 	const ip = sessionStorage.getItem("ip");
 
-	const [user, setUser] = useState({ email: "", password: "", role: "" });
+	const [user, setUser] = useState({
+		email: "",
+		password: "",
+		role: "RESIDENT",
+	});
 
 	let flushForm = () => {
-		setUser({ email: "", password: "", role: "ADMIN" });
+		setUser({ email: "", password: "", role: "RESIDENT" });
 	};
 
 	let submitHandler = () => {
@@ -25,7 +29,7 @@ function RegisterPage() {
 				flushForm();
 			})
 			.catch((error) => {
-				alert(error.message);
+				alert(error.response.data.message);
 			});
 	};
 
@@ -61,12 +65,9 @@ function RegisterPage() {
 					<br />
 
 					<select
-						name="cars"
-						id="cars"
 						value={user.role}
 						onChange={(e) => setUser({ ...user, role: e.target.value })}
 					>
-						<option value="ADMIN">ADMIN</option>
 						<option value="RESIDENT">RESIDENT</option>
 						<option value="VOLUNTEER">VOLUNTEER</option>
 					</select>
@@ -78,7 +79,7 @@ function RegisterPage() {
 						submitHandler();
 					}}
 				>
-					<strong>Register!</strong>
+					<strong>Register</strong>
 				</button>
 			</div>
 		</div>

@@ -34,7 +34,7 @@ function FundrasingCard(props) {
 				<Card.Title>{name}</Card.Title>
 				<br />
 				<br />
-				<Card.Text>{amount}</Card.Text>
+				<Card.Text>Raised amount: {amount}</Card.Text>
 			</Card.Body>
 		</Card>
 	);

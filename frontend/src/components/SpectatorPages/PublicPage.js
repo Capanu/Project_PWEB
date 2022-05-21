@@ -15,7 +15,7 @@ function PublicPage() {
 	sessionStorage.setItem("ip", ip);
 
 	return (
-		<div id="public-page">
+		<div id="public-page " className="war-img">
 			<Navbar style={{ background: "#1AC0C6" }} variant="dark">
 				<Container>
 					<Nav className="me-auto">
@@ -34,6 +34,9 @@ function PublicPage() {
 							style={{
 								background: "#FDFA66",
 								color: "black",
+								borderRadius: "10px",
+								borderColor: "#FDFA66",
+								width: "100px",
 								marginLeft: "150%",
 							}}
 						>
@@ -44,6 +47,9 @@ function PublicPage() {
 							style={{
 								background: "#FDFA66",
 								color: "black",
+								borderRadius: "10px",
+								borderColor: "#FDFA66",
+								width: "100px",
 								marginLeft: "20px",
 							}}
 						>
@@ -53,20 +59,7 @@ function PublicPage() {
 				</Container>
 			</Navbar>
 
-			<p>
-				Lorem Ipsum is simply dummy text of the printing and typesetting
-				industry. Lorem Ipsum has been the industry's standard dummy text ever
-				since the 1500s, when an unknown printer took a galley of type and
-				scrambled it to make a type specimen book. It has survived not only five
-				centuries, but also the leap into electronic typesetting, remaining
-				essentially unchanged. It was popularised in the 1960s with the release
-				of Letraset sheets containing Lorem Ipsum passages, and more recently
-				with desktop publishing software like Aldus PageMaker including versions
-				of Lorem Ipsum.
-			</p>
-			<div style={{ backgroundColor: env.REACT_APP_COLOR, height: "100px" }}>
-				<span>{env.REACT_APP_MAIN_TEXT}</span>
-			</div>
+			<div className="war-img"></div>
 		</div>
 	);
 }

@@ -44,7 +44,7 @@ export default function AdminAddVolunteersCampaign() {
 		<div className="war-container">
 			<div className="war-form">
 				<div className="war-input-field">
-					<label>Volunteer Campaign name:</label>
+					<label>Campaign name:</label>
 					<br />
 					<input
 						placeholder="Please type Volunteer Campaign name"

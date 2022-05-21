@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 function VolunteerRecruitmentCampaigns() {
 	const ip = sessionStorage.getItem("ip");
-	const user = sessionStorage.getItem("user");
+	const user = JSON.parse(sessionStorage.getItem("user"));
 
 	const [campaigns, setCampaigns] = useState([]);
 	useEffect(() => {
@@ -27,20 +27,8 @@ function VolunteerRecruitmentCampaigns() {
 				alert(error.message);
 			});
 	}, []);
-	const information = {
-		title: "Volunteer Recruitment campaign name",
-		description: "Some description",
-		currentNr: "12",
-		targetNr: "22",
-		viewOrSend: 1,
-	};
 
-	var arr = [];
-	for (let i = 1; i <= 13; i++) {
-		arr = [...arr, information];
-	}
-
-	const cards = arr.map((campaign) => {
+	const cards = campaigns.map((campaign) => {
 		return <VolunteerCard information={campaign} />;
 	});
 	return (
@@ -70,7 +58,10 @@ function VolunteerRecruitmentCampaigns() {
 							style={{
 								background: "#FDFA66",
 								color: "black",
-								marginLeft: "350%",
+								marginLeft: "250%",
+								borderRadius: "10px",
+								borderColor: "#FDFA66",
+								width: "100px",
 							}}
 						>
 							Logout

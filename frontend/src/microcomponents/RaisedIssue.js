@@ -8,7 +8,8 @@ function RaisedIssue(props) {
 	return (
 		<Card
 			style={{
-				width: "10vw",
+				width: "12vw",
+				height: "20vh",
 				background: "white",
 				color: "black",
 				borderRadius: "24px",

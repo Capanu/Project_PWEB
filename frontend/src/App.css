@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+.war-img{
+background: url('./last.jpg');
+background-repeat: no-repeat;
+width: 100vw;
+height: 93vh;
+}

@@ -35,9 +35,9 @@ function ResidentViewWarningPage() {
 						id="date"
 						value={
 							date.getDate() +
-							"/" +
+							"-" +
 							(date.getMonth() + 1) +
-							"/" +
+							"-" +
 							date.getFullYear() +
 							" " +
 							date.getHours() +
@@ -50,7 +50,7 @@ function ResidentViewWarningPage() {
 					></input>
 				</div>
 				<div className="war-input-field">
-					<label>Importance grade:</label>
+					<label>Importance degree:</label>
 					<br />
 					<input
 						type="text"

@@ -7,7 +7,7 @@ export default function ViewFundraisingCampaignPage() {
 		<div className="war-container">
 			<div className="war-form">
 				<div className="war-input-field">
-					<label>Foundraising Campaing name:</label>
+					<label>Fundraising Campaign name:</label>
 					<br />
 					<input
 						type="text"
@@ -27,17 +27,12 @@ export default function ViewFundraisingCampaignPage() {
 						readOnly
 					/>
 				</div>
-
 				<div className="war-input-field">
-					<label>Current amount:</label>
+					<label>IBAN:</label>
 					<br />
-					<input
-						type="text"
-						id="current-nr"
-						value={campaign.currentAmount}
-						readOnly
-					/>
+					<input type="text" id="current-nr" value={campaign.iban} readOnly />
 				</div>
+
 				<div className="war-input-field">
 					<label>Target amount:</label>
 					<br />
@@ -49,9 +44,14 @@ export default function ViewFundraisingCampaignPage() {
 					/>
 				</div>
 				<div className="war-input-field">
-					<label>Iban:</label>
+					<label>Current amount:</label>
 					<br />
-					<input type="text" id="current-nr" value={campaign.iban} readOnly />
+					<input
+						type="text"
+						id="current-nr"
+						value={campaign.currentAmount}
+						readOnly
+					/>
 				</div>
 			</div>
 		</div>

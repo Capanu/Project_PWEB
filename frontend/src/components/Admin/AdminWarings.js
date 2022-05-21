@@ -58,6 +58,7 @@ export default function AdminWarnings() {
 						</Nav.Link>
 						<Nav.Link href="/admin/warnings">Warnings and Alerts</Nav.Link>
 						<Nav.Link href="/admin/issues">Raised Issues</Nav.Link>
+						<Nav.Link href="/admin/donorsPage">Show Donors</Nav.Link>
 					</Nav>
 					<Nav>
 						<Button
@@ -65,7 +66,10 @@ export default function AdminWarnings() {
 							style={{
 								background: "#FDFA66",
 								color: "black",
-								marginLeft: "350%",
+								marginLeft: "250%",
+								borderRadius: "10px",
+								borderColor: "#FDFA66",
+								width: "100px",
 							}}
 						>
 							Logout
@@ -76,12 +80,14 @@ export default function AdminWarnings() {
 			<Button
 				onClick={() => (window.location = "/admin/addWarning")}
 				style={{
-					marginLeft: "1770px",
+					marginLeft: "1750px",
 					background: "red",
 					color: "white",
 					padding: "10px",
 					marginBottom: "10px",
 					marginTop: "20px",
+					borderRadius: "10px",
+					borderColor: "red",
 				}}
 			>
 				New Alert

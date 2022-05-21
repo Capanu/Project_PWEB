@@ -11,7 +11,7 @@ export default function AdminAddWaring() {
 		description: "",
 		date: "",
 		hours: "",
-		degreeOfImportance: "",
+		degreeOfImportance: "CRITICAL",
 	});
 
 	let flushForm = () => {
@@ -20,7 +20,7 @@ export default function AdminAddWaring() {
 			description: "",
 			date: "",
 			hours: "",
-			degreeOfImportance: "",
+			degreeOfImportance: "CRITICAL",
 		});
 	};
 
@@ -40,6 +40,7 @@ export default function AdminAddWaring() {
 			degreeOfImportance: warning.degreeOfImportance,
 			occurrenceDate: warning.date + " " + warning.hours + ":00",
 		};
+
 		axios
 			.post(url, payload, config)
 			.then((response) => {
@@ -92,7 +93,7 @@ export default function AdminAddWaring() {
 				</div>
 
 				<div className="war-input-field">
-					<label>Date:</label>
+					<label>Hour:</label>
 					<br />
 					<input
 						placeholder="Please type date"
@@ -104,7 +105,7 @@ export default function AdminAddWaring() {
 				</div>
 
 				<div className="war-input-field">
-					<label>Account role:</label>
+					<label>Importance degree:</label>
 					<br />
 
 					<select

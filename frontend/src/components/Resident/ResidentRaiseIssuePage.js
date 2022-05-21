@@ -23,10 +23,10 @@ function ResidentRaiseIssuePage() {
 			headers: { "X-Email": user.email },
 		};
 		// to do axios call
-
+		console.log(config);
 		// GET request using axios inside useEffect React hook
 		axios
-			.post(url, user, config)
+			.post(url, payload, config)
 			.then((response) => {
 				alert(response.data.message);
 				flushForm();
@@ -71,7 +71,7 @@ function ResidentRaiseIssuePage() {
 						submitHandler();
 					}}
 				>
-					<strong>Register!</strong>
+					<strong>Add</strong>
 				</button>
 			</div>
 		</div>

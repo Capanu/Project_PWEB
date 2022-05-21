@@ -48,7 +48,7 @@ export default function AdminAddFoundraisingCampaign() {
 		<div className="war-container">
 			<div className="war-form">
 				<div className="war-input-field">
-					<label>Foundraising Campaing name:</label>
+					<label>Fundraising Campaign name:</label>
 					<br />
 					<input
 						placeholder="Please  enter name of foundraising campaign"
@@ -76,7 +76,7 @@ export default function AdminAddFoundraisingCampaign() {
 				</div>
 
 				<div className="war-input-field">
-					<label>Iban:</label>
+					<label>IBAN:</label>
 					<br />
 					<input
 						placeholder="Please  enter Iban"

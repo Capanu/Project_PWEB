@@ -10,7 +10,8 @@ function VolunteerCard(props) {
 	return (
 		<Card
 			style={{
-				width: "10vw",
+				width: "12vw",
+				height: "20vh",
 				background: "white",
 				color: "black",
 				borderRadius: "24px",
@@ -33,7 +34,7 @@ function VolunteerCard(props) {
 				<Card.Title>{title}</Card.Title>
 				<br />
 				<br />
-				<Card.Text>Current nr of voluteers {currentNr}</Card.Text>
+				<Card.Text>Number of voluteers: {currentNr}</Card.Text>
 			</Card.Body>
 		</Card>
 	);

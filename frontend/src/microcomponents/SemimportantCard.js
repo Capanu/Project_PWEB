@@ -8,7 +8,8 @@ function SemimportantCard(props) {
 	return (
 		<Card
 			style={{
-				width: "10vw",
+				width: "12vw",
+				height: "20vh",
 				background: "#FDFA66",
 				color: "black",
 				borderRadius: "24px",
@@ -28,9 +29,9 @@ function SemimportantCard(props) {
 					{" "}
 					{"Date: " +
 						date.getDate() +
-						"/" +
+						"-" +
 						(date.getMonth() + 1) +
-						"/" +
+						"-" +
 						date.getFullYear() +
 						" " +
 						date.getHours() +

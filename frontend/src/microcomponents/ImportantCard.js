@@ -8,7 +8,8 @@ function ImportantCard(props) {
 	return (
 		<Card
 			style={{
-				width: "10vw",
+				width: "12vw",
+				height: "20vh",
 				background: "#E74645",
 				color: "white",
 				borderRadius: "24px",
@@ -25,12 +26,11 @@ function ImportantCard(props) {
 				<br />
 				<br />
 				<Card.Text>
-					{" "}
 					{"Date: " +
 						date.getDate() +
-						"/" +
+						"-" +
 						(date.getMonth() + 1) +
-						"/" +
+						"-" +
 						date.getFullYear() +
 						" " +
 						date.getHours() +

@@ -86,7 +86,7 @@ input:focus{
     margin-bottom: 10px;
       background-color: #FDFA66;
       border: 0px;
-      border-radius: 50px;
+      border-radius: 20px;
       width: 127px;
       height: 58px;
       text-align: center;
@@ -101,7 +101,7 @@ input:focus{
 
     .donation-campaigns {
         overflow: auto;
-        margin-top: 10px;
+        margin-top: 50px;
         margin-left: 50px;
         display: grid;
         grid-template-columns: 10vw 10vw 10vw;
@@ -111,8 +111,9 @@ input:focus{
 
 
     .warinigs-list {
+        margin-left: 50px;
         overflow: auto;
-        margin-top: 10px;
+        margin-top: 50px;
         display: grid;
         grid-template-columns: 10vw 10vw 10vw;
         column-gap: 100px;

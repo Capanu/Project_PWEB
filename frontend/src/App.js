@@ -38,6 +38,7 @@ import AdminWarnings from "./components/Admin/AdminWarings";
 import AdminAddWaring from "./components/Admin/AdminAddWaring";
 import AdminIssues from "./components/Admin/AdminIssues";
 import IssueView from "./components/Admin/IssueView";
+import DonorsPage from "./components/Admin/DonorsPage";
 
 function App() {
 	return (
@@ -116,6 +117,7 @@ function App() {
 
 				<Route path="/admin/issues" element={<AdminIssues />}></Route>
 				<Route path="/issue" element={<IssueView />}></Route>
+				<Route path="/admin/donorsPage" element={<DonorsPage />}></Route>
 			</Routes>
 		</BrowserRouter>
 	);

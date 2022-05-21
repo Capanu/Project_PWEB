@@ -8,7 +8,8 @@ function GreenCard(props) {
 	return (
 		<Card
 			style={{
-				width: "10vw",
+				width: "12vw",
+				height: "20vh",
 				background: "#05FF004D",
 				color: "black",
 				borderRadius: "24px",
@@ -27,9 +28,9 @@ function GreenCard(props) {
 				<Card.Text>
 					{"Date: " +
 						date.getDate() +
-						"/" +
+						"-" +
 						(date.getMonth() + 1) +
-						"/" +
+						"-" +
 						date.getFullYear() +
 						" " +
 						date.getHours() +

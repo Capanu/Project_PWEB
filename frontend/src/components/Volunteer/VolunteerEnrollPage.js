@@ -3,7 +3,7 @@ import axios from "axios";
 function VolunteerEnrollPage() {
 	const campaign = JSON.parse(sessionStorage.getItem("volunteerCampaign"));
 	const ip = sessionStorage.getItem("ip");
-	const user = sessionStorage.getItem("user");
+	const user = JSON.parse(sessionStorage.getItem("user"));
 	let submitHandler = () => {
 		console.log(campaign);
 
@@ -14,7 +14,7 @@ function VolunteerEnrollPage() {
 			headers: { "X-Email": user.email },
 		};
 		let payload = {
-			campaignId: campaign.campaignId,
+			campaignId: campaign.id,
 		};
 		// to do axios call
 
@@ -23,9 +23,11 @@ function VolunteerEnrollPage() {
 			.post(url, payload, config)
 			.then((response) => {
 				alert(response.data.message);
+				window.location = "/volunteerPage/volunteerCampaigns";
 			})
 			.catch((error) => {
-				alert(error.message);
+				alert(error.response.data.message);
+				console.log(error);
 			});
 	};
 
@@ -33,12 +35,12 @@ function VolunteerEnrollPage() {
 		<div className="war-container">
 			<div className="war-form">
 				<div className="war-input-field">
-					<label>Campaing name:</label>
+					<label>Campaign name:</label>
 					<br />
 					<input
 						type="text"
 						id="name-campaign"
-						value={campaign.title}
+						value={campaign.name}
 						readOnly
 					/>
 				</div>
@@ -46,7 +48,7 @@ function VolunteerEnrollPage() {
 				<div className="war-input-field">
 					<label>Description:</label>
 					<br />
-					<input
+					<textarea
 						type="text"
 						id="description"
 						value={campaign.description}
@@ -60,17 +62,17 @@ function VolunteerEnrollPage() {
 					<input
 						type="text"
 						id="current-nr"
-						value={campaign.currentNr}
+						value={campaign.currentNumberOfVolunteers}
 						readOnly
 					/>
 				</div>
 				<div className="war-input-field">
-					<label>Tartge number of volunteers:</label>
+					<label>Target number of volunteers:</label>
 					<br />
 					<input
 						type="text"
 						id="current-nr"
-						value={campaign.targetNr}
+						value={campaign.targetNumberOfVolunteers}
 						readOnly
 					/>
 				</div>

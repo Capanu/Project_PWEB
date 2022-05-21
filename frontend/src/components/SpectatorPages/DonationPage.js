@@ -24,20 +24,8 @@ function DonationPage() {
 				alert(error.message);
 			});
 	}, []);
-	const information = {
-		name: "Fundrasing campaign name!",
-		description: "Some description",
-		currentAmount: 12,
-		targetAmount: 1000,
-		isAdmin: 0,
-	};
 
-	var arr = [];
-	for (let i = 1; i <= 4; i++) {
-		arr = [...arr, information];
-	}
-
-	const cards = arr.map((campaign) => {
+	const cards = campaigns.map((campaign) => {
 		return <FundrasingCard information={campaign} />;
 	});
 	return (
@@ -61,6 +49,9 @@ function DonationPage() {
 								background: "#FDFA66",
 								color: "black",
 								marginLeft: "150%",
+								borderRadius: "10px",
+								borderColor: "#FDFA66",
+								width: "100px",
 							}}
 						>
 							Login
@@ -71,6 +62,9 @@ function DonationPage() {
 								background: "#FDFA66",
 								color: "black",
 								marginLeft: "20px",
+								borderRadius: "10px",
+								borderColor: "#FDFA66",
+								width: "100px",
 							}}
 						>
 							Register
