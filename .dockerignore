@@ -1,0 +1,21 @@
+# exclude hidden dirs .git etc.
+.*
+*.iml
+gradle
+
+# exclude build binaries
+build/*
+out/*
+
+# except files for docker
+!build/docker
+
+# And now for be/
+be-mail-sender-service/.*
+be-mail-sender-service/*.iml
+be-mail-sender-service/gradle
+
+be-mail-sender-service/build/*
+be-mail-sender-service/out/*
+
+!be-mail-sender-service/build/docker
