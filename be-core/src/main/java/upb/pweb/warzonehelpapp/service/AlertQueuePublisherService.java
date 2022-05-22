@@ -27,6 +27,8 @@ public class AlertQueuePublisherService {
         String formattedDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(alert.getOccurrenceDate());
         jsonAlert.put("occurrenceDate", formattedDate);
 
+        log.info("SEND ALERT TO RABBITMQ");
+
         rabbitTemplate.convertAndSend(WarzoneHelpApplication.directExchangeName, WarzoneHelpApplication.alertsQueueRoutingKey, jsonAlert.toString());
     }
 }
